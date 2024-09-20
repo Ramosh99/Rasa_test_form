@@ -1,0 +1,59 @@
+# data/stories.yml
+version: "3.1"
+
+stories:
+- story: registration
+  steps:
+    - intent: register
+    - action: registration_form
+    - active_loop: registration_form
+    - slot_was_set:
+        - requested_slot: type_plan
+    - slot_was_set:
+        - type_plan: monthly
+    - slot_was_set:
+        - requested_slot: quantity_meals
+    - slot_was_set:
+        - quantity_meals: one
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: utter_submit
+    - action: utter_registration_slots
+    - action: action_save_to_csv 
+    - action: action_listen
+    - intent: goodbye
+    - action: utter_goodbye
+
+- story: typical path
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: name_and_contact
+      entities:
+        - full_name: Alex
+        - contact_number: "89562314"
+    - slot_was_set:
+        - full_name: Alex
+        - contact_number: "89562314"
+    - action: action_say_name
+    - intent: register
+    - action: registration_form
+    - active_loop: registration_form
+    - slot_was_set:
+        - requested_slot: type_plan
+    - slot_was_set:
+        - type_plan: monthly
+    - slot_was_set:
+        - requested_slot: quantity_meals
+    - slot_was_set:
+        - quantity_meals: one
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: utter_submit
+    - action: utter_registration_slots
+    - action: action_save_to_csv
+    - action: action_listen
+    - intent: goodbye
+    - action: utter_goodbye

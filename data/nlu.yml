@@ -1,0 +1,78 @@
+# data/nlu.yml
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - greetings
+    - good morning
+    - good evening
+    - hey there
+
+- intent: goodbye
+  examples: |
+    - bye
+    - goodbye
+    - see you around
+    - see you later
+    - thanks for your help
+    - thank you
+
+- intent: name_and_contact 
+  examples: |
+    - my name is [John](full_name) and my phone number is [3490653480](contact_number)
+    - my name is [jane](full_name) and my contact is [569483572489](contact_number)
+    - i am [jonathan](full_name) and my contact is [569483572489](contact_number)
+    - I'm [Sarah](full_name), you can reach me at [1234567890](contact_number)
+    - [Michael Brown](full_name) here, my number is [9876543210](contact_number)
+    - This is [Emily](full_name), contact me on [5551234567](contact_number)
+    - [David Wilson](full_name) speaking, my phone is [4443332222](contact_number)
+    - You can call me [Lisa](full_name) at [7778889999](contact_number)
+    - Hello, I'm [Robert](full_name) and my contact number is [1112223333](contact_number)
+    - [Jennifer](full_name) is my name, [6665554444](contact_number) is my number
+    - Call me [Alex](full_name), my contact is [9998887777](contact_number)
+    - [Sophia](full_name) here, reach me at [3334445555](contact_number)    
+
+- intent: register
+  examples: |
+    - want to register for a meal plan
+    - I want to subscribe to a meal plan
+    - i'd like to register for a meal plan
+    - i'd like to subscribe to a meal plan
+    - I'm interested in choosing a meal plan
+    - i'm interested in choosing a plan
+    - i'm interested in registering for a meal plan
+    - Do you have any weekly meal plans?
+    - Do you have any monthly meal plans?
+    - What meal plans do you have?
+    - I would like to choose a meal plan
+    - I want to join a meal plan
+    - I'm interested in subscribing to a plan
+
+- intent: submit
+  examples: |
+    - i want to register for a [monthly](type_plan) meal plan of [one](quantity_meals) meal a day
+    - i want to subscribe to a [weekly](type_plan) meal plan of [three](quantity_meals) meals a day
+    - i'd like to register for [weekly](type_plan) meal plan
+    - i'd like to subscribe to a [monthly](type_plan) meal plan
+    - I'm interested in choosing a [monthly](type_plan) meal plan for [two](quantity_meals) meals
+    - i'm interested in choosing a plan of [three](quantity_meals) meals
+    - im interested in registering for a plan of [one](quantity_meals) meal
+    - im interested in subscribing to a plan of [two](quantity_meals) meals
+    - [2](quantity_meals) meals
+    - [3](quantity_meals)
+    - [weekly](type_plan)
+    - [monthly](type_plan)
+    - [one](quantity_meals)
+
+- regex: contact_number
+  examples: |
+    - \d{10}
+    - \d{3}-\d{3}-\d{4}
+
+# - regex: full_name
+#   examples: |
+#     - [A-Za-z]+(?:\s[A-Za-z]+)*

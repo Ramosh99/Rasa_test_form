@@ -1,0 +1,76 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - name_and_contact
+  - deny
+  - bot_challenge
+  - goodcal
+  - register
+  - submit
+
+entities:
+  - contact_number
+  - full_name
+  - type_plan
+  - quantity_meals
+
+slots:
+  contact_number:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: contact_number
+  full_name:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: full_name
+  type_plan:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: type_plan
+  quantity_meals:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: quantity_meals
+
+forms:
+  registration_form:
+    required_slots:
+      - type_plan
+      - quantity_meals
+
+responses:
+  utter_greet:
+    - text: "Hey! Welcome to GoodCal's Customer Service Assistant. We'd like to get to know you first before making you familiar with our services. What is your good name, and your contact number?"
+  utter_goodbye:
+    - text: "Bye"
+  utter_iamabot:
+    - text: "I am a bot, powered by Rasa."
+  utter_registration_slots:
+    - text: "I have registered you for the following program: {type_plan}, {quantity_meals}"
+  utter_ask_type_plan:
+    - text: "What period would you like to register for (weekly or monthly)?"
+  utter_ask_quantity_meals:
+    - text: "Which meal plan would you like to register in (one, two or three meals)?"
+  utter_submit:
+    - text: "Thank you, I will now register you"
+
+actions:
+  - action_say_name
+  - validate_registration_form
+  - utter_registration_slots
+  - utter_submit
+  - action_save_to_csv
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
